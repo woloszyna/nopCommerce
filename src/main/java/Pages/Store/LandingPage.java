@@ -10,6 +10,7 @@ public class LandingPage  extends BasicOperations {
     public String Nikon = "Nikon D5500 DSLR";
 
     public WebElement searchBar = driver.findElement(By.className("search-box-text"));
+    public WebElement regIcon = driver.findElement(By.className("ico-register"));
 
     public void SearchError() {
 

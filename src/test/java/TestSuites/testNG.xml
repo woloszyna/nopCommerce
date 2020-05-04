@@ -4,6 +4,7 @@
             <!--<class name="FeatureTests.VerifyTopBar"/> a full name of the class incl. package.class-->
             <class name="Admin.LoginVerification"/>
             <class name="Store.SearchVerification"/>
+            <class name="Store.VerifyRegistration"/>
         </classes>
     </test>
 </suite>

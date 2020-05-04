@@ -28,7 +28,7 @@ public class LoginVerification extends BasicOperations {
 
     }
 
-    @Test
+    @Test (priority = 0)
     public void IncorrectLogin() {
 
         LoginPage LoginPage = new LoginPage();
@@ -39,7 +39,7 @@ public class LoginVerification extends BasicOperations {
         Assert.assertTrue(pageSource.contains("Login was unsuccessful"));
     }
 
-    @Test
+    @Test (priority = 1)
     public void CorrectLogin() {
 
         LoginPage LoginPage = new LoginPage();

@@ -34,6 +34,45 @@
 
     <Store>
 
+        <AccountCreation>
+
+            <CanCreateCorrectDetails>CREATE TEST
+
+            1. Access Registration Page
+            2. Provide Details
+            3. xxx
+            4. xxx
+
+            Result: xxx
+
+            ...
+            Success 'Your registration completed'
+            </CanCreateCorrectDetails>
+
+            <CannotCreateInorrectDetais>CREATE TEST
+
+                1. Access Registration Page
+                2. Provide Details
+                3. xxx
+                4. xxx
+
+                Result: xxx
+
+                ...
+                Success 'Your registration completed'
+            </CannotCreateInorrectDetais>
+
+        </AccountCreation>
+
+        <LoginVerification>
+            <LoginCorrectDetails>CREATE TEST
+            </LoginCorrectDetails>
+            <LoginInorrectDetails>CREATE TEST
+            </LoginInorrectDetails>
+
+
+
+        </LoginVerification>
         <SearchVerification>
             <SearchError>
                 1. Access Store Page
@@ -51,6 +90,16 @@
                 Result: Error does not display | Product displays | Product Name retrieved and displays
             </SearchFunctionality>
         </SearchVerification>
+        <AddtoCart>
+            1. xxx
+            2. xxx
+            3. xxx
+            4. xxx
+
+            Result: xxx
+
+
+        </AddtoCart>
     </Store>
 
 

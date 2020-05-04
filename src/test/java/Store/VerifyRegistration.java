@@ -2,9 +2,11 @@ package Store;
 
 import Basis.BasicOperations;
 import Pages.Store.LandingPage;
-import Pages.Store.SearchResults;
+import Pages.Store.RegisterPage;
+import Pages.Store.RegisterResult;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,49 +17,50 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class SearchVerification extends BasicOperations {
-
-    BasicOperations BasicOperations = new BasicOperations();
-
+public class VerifyRegistration extends BasicOperations {
 
     @BeforeMethod
     public void OpenChromeFrontend() {
-
-        BasicOperations.OpenChromeFrontend();
-
+        System.setProperty("webdriver.chrome.driver", "WebDrivers/chromedriverv80");
+        //System.setProperty("webdriver.chrome.driver", "WebDrivers/Winchromedriverv81.exe");
+        driver = new ChromeDriver();
+        driver.get("https://demo.nopcommerce.com/");
+        driver.manage().window().maximize();
     }
 
-    @Test (priority = 0)
-    public void SearchError() {
+    @BeforeMethod
+    public void openRegPage() {
 
         LandingPage LandingPage = new LandingPage();
-
-        LandingPage.SearchError();
-        String error = driver.getPageSource();
-        Assert.assertTrue(error.contains("No products were found that matched your criteria."));
+        LandingPage.regIcon.click();
 
     }
 
-    @Test  (priority = 1)
-    public void SearchFunctionality() {
+    @Test
+    public void CanCreateCorrectDetailsM() {
 
-        LandingPage LandingPage = new LandingPage();
+        RegisterPage RegisterPage = new RegisterPage();
+        RegisterPage.RegisterMale();
 
-        LandingPage.SearchFunctionality();
-
-        SearchResults SearchResults = new SearchResults();
-
-        SearchResults.focusOnProducts();
-
-        Assert.assertTrue(SearchResults.prodSelectors.isDisplayed());
-        Assert.assertTrue(SearchResults.searchResults.isDisplayed());
-        Assert.assertTrue(SearchResults.oneProduct.isDisplayed());
-        Assert.assertTrue(SearchResults.prodDetails.isDisplayed());
-        Assert.assertEquals(SearchResults.prodTitle, LandingPage.Nikon);
+        RegisterResult RegisterResult = new RegisterResult();
+        Assert.assertTrue(RegisterResult.result.isDisplayed());
+        Assert.assertEquals(RegisterResult.resultText, "Your registration completed");
 
     }
 
-    @AfterTest
+    @Test
+    public void CanCreateCorrectDetailsW() {
+
+        RegisterPage RegisterPage = new RegisterPage();
+        RegisterPage.RegisterFemale();
+
+        RegisterResult RegisterResult = new RegisterResult();
+        Assert.assertTrue(RegisterResult.result.isDisplayed());
+        Assert.assertEquals(RegisterResult.resultText, "Your registration completed");
+
+    }
+
+    @AfterMethod
     public void Close() {
 
         {
@@ -83,7 +86,6 @@ public class SearchVerification extends BasicOperations {
 
         }
         System.out.println("Screenshot saved");
-
         driver.quit();
 
     }
