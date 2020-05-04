@@ -1,0 +1,56 @@
+<Scenarios>
+    <Template>
+        1. xxx
+        2. xxx
+        3. xxx
+        4. xxx
+
+        Result: xxx
+    </Template>
+
+    <Admin>
+        <LoginVerification>
+
+            <IncorrectLogin>
+            1. Access Admin page
+            2. Provide Correct Login value
+            3. Provide Incorrect Password value
+            4. Click on Log In button
+
+            Result: Error Displays
+            </IncorrectLogin>
+            <CorrectLogin>
+                1. Access Admin page
+                2. Provide Correct Login value
+                3. Provide Correct Password value
+                4. Click on Log In button
+
+                Result: Page Accessed | Logout Button displays, Operator Name Displays
+            </CorrectLogin>
+
+        </LoginVerification>
+
+    </Admin>
+
+    <Store>
+
+        <SearchVerification>
+            <SearchError>
+                1. Access Store Page
+                2. In the searchbar provide the value of product that does not exist
+                3. Click on 'Search' button
+
+                Result: Error displays
+            </SearchError>
+            <SearchFunctionality>
+                1. Access Store Page
+                2. In the searchbar provide the value of product that does exist
+                3. Click on 'Search' button
+
+                Result: Error does not display | Product Name retrieved and displays
+            </SearchFunctionality>
+        </SearchVerification>
+    </Store>
+
+
+</Scenarios>

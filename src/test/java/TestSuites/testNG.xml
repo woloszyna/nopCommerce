@@ -1,0 +1,8 @@
+<suite name="Regression Suite ">
+    <test name="Login Verification">
+        <classes>
+            <!--<class name="FeatureTests.VerifyTopBar"/> a full name of the class incl. package.class-->
+            <class name="Admin.LoginVerification"/>
+        </classes>
+    </test>
+</suite>
