@@ -1,14 +1,10 @@
 package Pages.Store;
 
 import Basis.BasicOperations;
-import Basis.RandomString;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.sql.Timestamp;
-import java.util.concurrent.TimeUnit;
 
 public class RegisterPage extends BasicOperations {
 
@@ -86,6 +82,31 @@ public class RegisterPage extends BasicOperations {
 
         genW.click();
         fName.sendKeys("First"+uniqueString);
+        lName.sendKeys("Last"+uniqueString);
+        DOBD.sendKeys("20");
+        DOBM.sendKeys("January");
+        DOBY.sendKeys("2000");
+        email.sendKeys(emailaddress);
+
+        coName.sendKeys("Company "+uniqueString);
+        newsletter.click();
+        newsletter.click();
+
+        password.sendKeys(uniqueString+"");
+        confPassword.sendKeys(uniqueString+"");
+
+        regBtn.click();
+    }
+
+    public void RegisterIncorrect() {
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        genM.click();
         lName.sendKeys("Last"+uniqueString);
         DOBD.sendKeys("20");
         DOBM.sendKeys("January");

@@ -4,11 +4,7 @@ import Basis.BasicOperations;
 import Pages.Store.LandingPage;
 import Pages.Store.LoginPage;
 import Pages.Store.RegisterPage;
-import Pages.Store.RegisterResult;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class VerifyRegistration extends BasicOperations {
+public class LoginTestIncorrect extends BasicOperations {
 
     @BeforeMethod
     public void OpenChromeFrontend() {
@@ -32,50 +28,37 @@ public class VerifyRegistration extends BasicOperations {
     }
 
     @BeforeMethod
-    public void openRegPage() {
-
-        LandingPage LandingPage = new LandingPage();
-        LandingPage.regIcon.click();
-
-    }
-
-    @Test
-    public void CanCreateCorrectDetailsM() {
-
-        RegisterPage RegisterPage = new RegisterPage();
-        RegisterPage.RegisterMale();
-
-        RegisterResult RegisterResult = new RegisterResult();
-        Assert.assertTrue(RegisterResult.result.isDisplayed());
-        Assert.assertEquals(RegisterResult.resultText, "Your registration completed");
-
-    }
-
-    @Test
-    public void CanCreateCorrectDetailsW() {
-
-        RegisterPage RegisterPage = new RegisterPage();
-        RegisterPage.RegisterFemale();
-
-        RegisterResult RegisterResult = new RegisterResult();
-        Assert.assertTrue(RegisterResult.result.isDisplayed());
-        Assert.assertEquals(RegisterResult.resultText, "Your registration completed");
-
-    }
-
-    @Test
-    public void CannotCreateMissingDetails() {
+    public void RegisterIncorrect() {
 
         RegisterPage RegisterPage = new RegisterPage();
         RegisterPage.RegisterIncorrect();
 
-        WebElement fNameMissing = driver.findElement(By.className("field-validation-error"));
-        String fNameError = driver.findElement(By.className("field-validation-error")).getText();
+    }
 
-        Assert.assertTrue(fNameMissing.isDisplayed());
-        Assert.assertEquals(fNameError,"First name is required.");
+    @BeforeMethod
+    public void openLoginPage() {
+
+        LandingPage LandingPage = new LandingPage();
+        LandingPage.loginIcon.click();
 
     }
+
+    /*
+   WORK HERE
+
+    @Test
+    public void loginIncorrectDet() {
+
+        LoginPage LoginPage = new LoginPage();
+        RegisterPage RegisterPage = new RegisterPage();
+
+        LoginPage.email.sendKeys(RegisterPage.emailaddress);
+        LoginPage.password.sendKeys(RegisterPage.uniqueString+"");
+        LoginPage.loginBtn.click();
+
+    }
+
+     */
 
     @AfterMethod
     public void Close() {
@@ -106,5 +89,6 @@ public class VerifyRegistration extends BasicOperations {
         driver.quit();
 
     }
+
 
 }

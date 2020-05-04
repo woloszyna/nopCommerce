@@ -11,6 +11,7 @@ public class LandingPage  extends BasicOperations {
 
     public WebElement searchBar = driver.findElement(By.className("search-box-text"));
     public WebElement regIcon = driver.findElement(By.className("ico-register"));
+    public WebElement loginIcon = driver.findElement(By.className("ico-login"));
 
     public void SearchError() {
 
