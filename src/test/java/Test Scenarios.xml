@@ -42,12 +42,13 @@
 
                 Result: Error displays
             </SearchError>
+
             <SearchFunctionality>
                 1. Access Store Page
                 2. In the searchbar provide the value of product that does exist
                 3. Click on 'Search' button
 
-                Result: Error does not display | Product Name retrieved and displays
+                Result: Error does not display | Product displays | Product Name retrieved and displays
             </SearchFunctionality>
         </SearchVerification>
     </Store>

@@ -76,6 +76,29 @@ public class BasicOperations {
 
     public void Close() {
 
+        {
+            try {
+                Thread.sleep(120);
+                Robot r = new Robot();
+
+                Date date = new Date();
+                long timestamp = date.getTime();
+
+                // It saves screenshot to desired path
+                String path = "ScreenShots/screenshot"+timestamp+".jpg";
+
+                // Used to get ScreenSize and capture image
+                Rectangle capture =
+                        new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+                BufferedImage Image = r.createScreenCapture(capture);
+                ImageIO.write(Image, "jpg", new File(path));
+            }
+            catch (AWTException | IOException | InterruptedException ex) {
+                System.out.println(ex);
+            }
+
+        }
+        System.out.println("Screenshot saved");
         driver.quit();
 
     }

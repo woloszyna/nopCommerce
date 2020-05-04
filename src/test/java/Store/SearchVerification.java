@@ -1,11 +1,9 @@
-package Admin;
+package Store;
 
 import Basis.BasicOperations;
-import Pages.Admin.LandingPage;
-import Pages.Admin.LoginPage;
-import org.openqa.selenium.By;
+import Pages.Store.LandingPage;
+import Pages.Store.SearchResults;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,43 +15,48 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class LoginVerification extends BasicOperations {
+public class SearchVerification extends BasicOperations {
 
     BasicOperations BasicOperations = new BasicOperations();
 
     @BeforeMethod
-    public void StoreChrome() {
+    public void OpenChromeFrontend() {
 
-        BasicOperations.OpenChromeAdmin();
+        BasicOperations.OpenChromeFrontend();
 
     }
 
     @Test
-    public void IncorrectLogin() {
-
-        LoginPage LoginPage = new LoginPage();
-
-        LoginPage.AdminLoginIncorrect();
-
-        String pageSource = driver.getPageSource();
-        Assert.assertTrue(pageSource.contains("Login was unsuccessful"));
-    }
-
-    @Test
-    public void CorrectLogin() {
-
-        LoginPage LoginPage = new LoginPage();
-
-        LoginPage.AdminLoginCorrect();
+    public void SearchError() {
 
         LandingPage LandingPage = new LandingPage();
 
-        Assert.assertTrue(LandingPage.AccInfo.isDisplayed());
-        Assert.assertTrue(LandingPage.LogoutBtn.isDisplayed());
-        Assert.assertEquals(LandingPage.Operator, "John Smith");
+        LandingPage.SearchError();
+        String error = driver.getPageSource();
+        Assert.assertTrue(error.contains("No products were found that matched your criteria."));
+
     }
 
-    @AfterMethod
+    @Test
+    public void SearchFunctionality() {
+
+        LandingPage LandingPage = new LandingPage();
+
+        LandingPage.SearchFunctionality();
+
+        SearchResults SearchResults = new SearchResults();
+
+        SearchResults.focusOnProducts();
+
+        Assert.assertTrue(SearchResults.prodSelectors.isDisplayed());
+        Assert.assertTrue(SearchResults.searchResults.isDisplayed());
+        Assert.assertTrue(SearchResults.oneProduct.isDisplayed());
+        Assert.assertTrue(SearchResults.prodDetails.isDisplayed());
+        Assert.assertEquals(SearchResults.prodTitle, LandingPage.Nikon);
+
+    }
+
+    @AfterTest
     public void Close() {
 
         {
