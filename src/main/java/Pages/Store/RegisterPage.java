@@ -15,6 +15,7 @@ public class RegisterPage extends BasicOperations {
     //Details
     public Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     public long uniqueString = timestamp.getTime();
+    public String emailaddress = uniqueString+"@email.com";
 
     //Your Personal Details Form
     //public WebElement regModal = driver.findElement(By.className("form-fields"));
@@ -62,7 +63,7 @@ public class RegisterPage extends BasicOperations {
         DOBD.sendKeys("20");
         DOBM.sendKeys("January");
         DOBY.sendKeys("2000");
-        email.sendKeys(uniqueString+"@email.com");
+        email.sendKeys(emailaddress);
 
         coName.sendKeys("Company "+uniqueString);
 
@@ -89,7 +90,7 @@ public class RegisterPage extends BasicOperations {
         DOBD.sendKeys("20");
         DOBM.sendKeys("January");
         DOBY.sendKeys("2000");
-        email.sendKeys(uniqueString+"@email.com");
+        email.sendKeys(emailaddress);
 
         coName.sendKeys("Company "+uniqueString);
         newsletter.click();
