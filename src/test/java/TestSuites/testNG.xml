@@ -5,6 +5,7 @@
             <class name="Admin.LoginVerification"/>
             <class name="Store.SearchVerification"/>
             <class name="Store.VerifyRegistration"/>
+            <class name="Store.LoginTest"/>
         </classes>
     </test>
 </suite>

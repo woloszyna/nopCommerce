@@ -3,6 +3,7 @@ package Store;
 import Basis.BasicOperations;
 import Pages.Store.LandingPage;
 import Pages.Store.SearchResults;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -27,7 +28,7 @@ public class SearchVerification extends BasicOperations {
 
     }
 
-    @Test (priority = 0)
+    @Test (priority = 1)
     public void SearchError() {
 
         LandingPage LandingPage = new LandingPage();
@@ -38,54 +39,30 @@ public class SearchVerification extends BasicOperations {
 
     }
 
-    @Test  (priority = 1)
+    @Test  (priority = 2)
     public void SearchFunctionality() {
 
         LandingPage LandingPage = new LandingPage();
-
         LandingPage.SearchFunctionality();
 
         SearchResults SearchResults = new SearchResults();
-
         SearchResults.focusOnProducts();
+
+        String prodTitle = SearchResults.prodTitle;
+        String Nikon = LandingPage.Nikon;
 
         Assert.assertTrue(SearchResults.prodSelectors.isDisplayed());
         Assert.assertTrue(SearchResults.searchResults.isDisplayed());
         Assert.assertTrue(SearchResults.oneProduct.isDisplayed());
         Assert.assertTrue(SearchResults.prodDetails.isDisplayed());
-        Assert.assertEquals(SearchResults.prodTitle, LandingPage.Nikon);
+        Assert.assertEquals(prodTitle, Nikon);
 
     }
 
     @AfterTest
     public void Close() {
 
-        {
-            try {
-                Thread.sleep(120);
-                Robot r = new Robot();
-
-                Date date = new Date();
-                long timestamp = date.getTime();
-
-                // It saves screenshot to desired path
-                String path = "ScreenShots/screenshot"+timestamp+".jpg";
-
-                // Used to get ScreenSize and capture image
-                Rectangle capture =
-                        new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-                BufferedImage Image = r.createScreenCapture(capture);
-                ImageIO.write(Image, "jpg", new File(path));
-            }
-            catch (AWTException | IOException | InterruptedException ex) {
-                System.out.println(ex);
-            }
-
-        }
-        System.out.println("Screenshot saved");
-
-        driver.quit();
-
+      BasicOperations.Close();
     }
 
 }

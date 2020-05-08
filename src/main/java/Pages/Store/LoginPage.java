@@ -15,17 +15,6 @@ public class LoginPage extends BasicOperations {
 
         LandingPage LandingPage = new LandingPage();
         LandingPage.loginIcon.click();
-
-    }
-
-    public void loginCorrectDet() {
-
-    }
-
-    public void loginIncorrectDet() {
-
-
-
     }
 
 

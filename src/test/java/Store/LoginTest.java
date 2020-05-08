@@ -4,8 +4,12 @@ import Basis.BasicOperations;
 import Pages.Store.LandingPage;
 import Pages.Store.LoginPage;
 import Pages.Store.RegisterPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,10 +20,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class LoginTestIncorrect extends BasicOperations {
+public class LoginTest extends BasicOperations {
 
     @BeforeMethod
-    public void OpenChromeFrontend() {
+    public void openChromeFrontend() {
         System.setProperty("webdriver.chrome.driver", "WebDrivers/chromedriverv80");
         //System.setProperty("webdriver.chrome.driver", "WebDrivers/Winchromedriverv81.exe");
         driver = new ChromeDriver();
@@ -28,39 +32,45 @@ public class LoginTestIncorrect extends BasicOperations {
     }
 
     @BeforeMethod
-    public void RegisterIncorrect() {
-
-        RegisterPage RegisterPage = new RegisterPage();
-        RegisterPage.RegisterIncorrect();
-
-    }
-
-    @BeforeMethod
-    public void openLoginPage() {
+    public void openRegPage() {
 
         LandingPage LandingPage = new LandingPage();
-        LandingPage.loginIcon.click();
+        LandingPage.regIcon.click();
 
     }
-
-    /*
-   WORK HERE
 
     @Test
-    public void loginIncorrectDet() {
+    public void loginIncorrectDetails(){
 
-        LoginPage LoginPage = new LoginPage();
         RegisterPage RegisterPage = new RegisterPage();
+        RegisterPage.loginIncorrectDetails();
 
-        LoginPage.email.sendKeys(RegisterPage.emailaddress);
-        LoginPage.password.sendKeys(RegisterPage.uniqueString+"");
-        LoginPage.loginBtn.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement loginError = driver.findElement(By.className("message-error"));
+        String errorMsg = driver.findElement(By.className("message-error")).getText();
+
+        Assert.assertTrue(loginError.isDisplayed());
+        Assert.assertEquals(errorMsg, "Login was unsuccessful. Please correct the errors and try again.\n" +
+                "No customer account found");
+    }
+
+    @Test
+    public void loginCorrectDetails() {
+
+        RegisterPage RegisterPage = new RegisterPage();
+        RegisterPage.loginCorrectDetails();
+
+        WebElement logout = driver.findElement(By.className("ico-logout"));
+        Assert.assertTrue(logout.isDisplayed());
 
     }
 
-     */
-
-    @AfterMethod
+    @AfterTest
     public void Close() {
 
         {
@@ -89,6 +99,5 @@ public class LoginTestIncorrect extends BasicOperations {
         driver.quit();
 
     }
-
-
 }
+
