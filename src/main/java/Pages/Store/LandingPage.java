@@ -10,10 +10,11 @@ public class LandingPage  extends BasicOperations {
     public String Nikon = "Nikon D5500 DSLR";
 
     public WebElement searchBar = driver.findElement(By.className("search-box-text"));
+    public String searchBarValidation = driver.findElement(By.className("search-box-text")).getAttribute("type");
     public WebElement regIcon = driver.findElement(By.className("ico-register"));
     public WebElement loginIcon = driver.findElement(By.className("ico-login"));
 
-    public void SearchError() {
+    public void searchError() {
 
         searchBar.clear();
         searchBar.sendKeys(NoProduct);
@@ -21,7 +22,7 @@ public class LandingPage  extends BasicOperations {
 
     }
 
-    public void SearchFunctionality() {
+    public void searchFunctionality() {
 
         searchBar.clear();
         searchBar.sendKeys(Nikon);

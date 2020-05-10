@@ -28,12 +28,20 @@ public class SearchVerification extends BasicOperations {
 
     }
 
+    @Test
+    public void searchFieldValidation() {
+
+        LandingPage LandingPage = new LandingPage();
+        Assert.assertEquals(LandingPage.searchBarValidation, "text");
+
+    }
+
     @Test (priority = 1)
     public void SearchError() {
 
         LandingPage LandingPage = new LandingPage();
 
-        LandingPage.SearchError();
+        LandingPage.searchError();
         String error = driver.getPageSource();
         Assert.assertTrue(error.contains("No products were found that matched your criteria."));
 
@@ -43,7 +51,7 @@ public class SearchVerification extends BasicOperations {
     public void SearchFunctionality() {
 
         LandingPage LandingPage = new LandingPage();
-        LandingPage.SearchFunctionality();
+        LandingPage.searchFunctionality();
 
         SearchResults SearchResults = new SearchResults();
         SearchResults.focusOnProducts();

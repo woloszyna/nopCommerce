@@ -28,7 +28,17 @@ public class LoginVerification extends BasicOperations {
 
     }
 
-    @Test (priority = 0)
+    @Test
+    public void fieldValidation() {
+
+        LoginPage LoginPage = new LoginPage();
+
+        Assert.assertEquals(LoginPage.emailType,"email");
+        Assert.assertEquals(LoginPage.passwordType,"password");
+
+    }
+
+    @Test
     public void IncorrectLogin() {
 
         LoginPage LoginPage = new LoginPage();
@@ -39,7 +49,7 @@ public class LoginVerification extends BasicOperations {
         Assert.assertTrue(pageSource.contains("Login was unsuccessful"));
     }
 
-    @Test (priority = 1)
+    @Test
     public void CorrectLogin() {
 
         LoginPage LoginPage = new LoginPage();
@@ -56,32 +66,7 @@ public class LoginVerification extends BasicOperations {
     @AfterMethod
     public void Close() {
 
-        {
-            try {
-                Thread.sleep(120);
-                Robot r = new Robot();
-
-                Date date = new Date();
-                long timestamp = date.getTime();
-
-                // It saves screenshot to desired path
-                String path = "ScreenShots/screenshot"+timestamp+".jpg";
-
-                // Used to get ScreenSize and capture image
-                Rectangle capture =
-                        new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-                BufferedImage Image = r.createScreenCapture(capture);
-                ImageIO.write(Image, "jpg", new File(path));
-            }
-            catch (AWTException | IOException | InterruptedException ex) {
-                System.out.println(ex);
-            }
-
-        }
-        System.out.println("Screenshot saved");
-
-        driver.quit();
+        BasicOperations.Close();
 
     }
-
 }

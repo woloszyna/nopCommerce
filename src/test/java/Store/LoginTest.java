@@ -22,6 +22,8 @@ import java.util.Date;
 
 public class LoginTest extends BasicOperations {
 
+    BasicOperations BasicOperations = new BasicOperations();
+
     @BeforeMethod
     public void openChromeFrontend() {
         System.setProperty("webdriver.chrome.driver", "WebDrivers/chromedriverv80");
@@ -39,6 +41,7 @@ public class LoginTest extends BasicOperations {
 
     }
 
+
     @Test
     public void loginIncorrectDetails(){
 
@@ -53,6 +56,7 @@ public class LoginTest extends BasicOperations {
 
         WebElement loginError = driver.findElement(By.className("message-error"));
         String errorMsg = driver.findElement(By.className("message-error")).getText();
+
 
         Assert.assertTrue(loginError.isDisplayed());
         Assert.assertEquals(errorMsg, "Login was unsuccessful. Please correct the errors and try again.\n" +
@@ -73,31 +77,9 @@ public class LoginTest extends BasicOperations {
     @AfterTest
     public void Close() {
 
-        {
-            try {
-                Thread.sleep(120);
-                Robot r = new Robot();
-
-                Date date = new Date();
-                long timestamp = date.getTime();
-
-                // It saves screenshot to desired path
-                String path = "ScreenShots/screenshot"+timestamp+".jpg";
-
-                // Used to get ScreenSize and capture image
-                Rectangle capture =
-                        new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-                BufferedImage Image = r.createScreenCapture(capture);
-                ImageIO.write(Image, "jpg", new File(path));
-            }
-            catch (AWTException | IOException | InterruptedException ex) {
-                System.out.println(ex);
-            }
-
-        }
-        System.out.println("Screenshot saved");
-        driver.quit();
+        BasicOperations.Close();
 
     }
+
 }
 

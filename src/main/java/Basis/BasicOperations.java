@@ -99,6 +99,7 @@ public class BasicOperations {
 
         }
         System.out.println("Screenshot saved");
+        driver.close();
         driver.quit();
 
     }

@@ -22,6 +22,8 @@ import java.util.Date;
 
 public class VerifyRegistration extends BasicOperations {
 
+    BasicOperations BasicOperations = new BasicOperations();
+
     @BeforeMethod
     public void OpenChromeFrontend() {
         System.setProperty("webdriver.chrome.driver", "WebDrivers/chromedriverv80");
@@ -80,30 +82,7 @@ public class VerifyRegistration extends BasicOperations {
     @AfterMethod
     public void Close() {
 
-        {
-            try {
-                Thread.sleep(120);
-                Robot r = new Robot();
-
-                Date date = new Date();
-                long timestamp = date.getTime();
-
-                // It saves screenshot to desired path
-                String path = "ScreenShots/screenshot"+timestamp+".jpg";
-
-                // Used to get ScreenSize and capture image
-                Rectangle capture =
-                        new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-                BufferedImage Image = r.createScreenCapture(capture);
-                ImageIO.write(Image, "jpg", new File(path));
-            }
-            catch (AWTException | IOException | InterruptedException ex) {
-                System.out.println(ex);
-            }
-
-        }
-        System.out.println("Screenshot saved");
-        driver.quit();
+        BasicOperations.Close();
 
     }
 

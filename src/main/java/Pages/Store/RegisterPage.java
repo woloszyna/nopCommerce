@@ -164,6 +164,7 @@ public class RegisterPage extends BasicOperations {
 
         WebElement email = driver.findElement(By.className("email"));
         WebElement password = driver.findElement(By.className("password"));
+        String passwordType = driver.findElement(By.className("password")).getAttribute("Type");
         WebElement loginBtn = driver.findElement(By.className("login-button"));
 
         email.sendKeys(emailaddress);
