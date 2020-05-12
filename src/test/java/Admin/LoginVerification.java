@@ -42,7 +42,6 @@ public class LoginVerification extends BasicOperations {
     public void IncorrectLogin() {
 
         LoginPage LoginPage = new LoginPage();
-
         LoginPage.AdminLoginIncorrect();
 
         String pageSource = driver.getPageSource();
@@ -53,7 +52,6 @@ public class LoginVerification extends BasicOperations {
     public void CorrectLogin() {
 
         LoginPage LoginPage = new LoginPage();
-
         LoginPage.AdminLoginCorrect();
 
         LandingPage LandingPage = new LandingPage();
@@ -66,6 +64,7 @@ public class LoginVerification extends BasicOperations {
     @AfterMethod
     public void Close() {
 
+        BasicOperations.takeScreenshot();
         BasicOperations.Close();
 
     }

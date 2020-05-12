@@ -5,6 +5,7 @@ import Pages.Store.LandingPage;
 import Pages.Store.SearchResults;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,7 +20,6 @@ import java.util.Date;
 public class SearchVerification extends BasicOperations {
 
     BasicOperations BasicOperations = new BasicOperations();
-
 
     @BeforeMethod
     public void OpenChromeFrontend() {
@@ -36,18 +36,18 @@ public class SearchVerification extends BasicOperations {
 
     }
 
-    @Test (priority = 1)
+    @Test
     public void SearchError() {
 
         LandingPage LandingPage = new LandingPage();
-
         LandingPage.searchError();
+
         String error = driver.getPageSource();
         Assert.assertTrue(error.contains("No products were found that matched your criteria."));
 
     }
 
-    @Test  (priority = 2)
+    @Test
     public void SearchFunctionality() {
 
         LandingPage LandingPage = new LandingPage();
@@ -67,10 +67,12 @@ public class SearchVerification extends BasicOperations {
 
     }
 
-    @AfterTest
+    @AfterMethod
     public void Close() {
 
-      BasicOperations.Close();
+        BasicOperations.takeScreenshot();
+        BasicOperations.Close();
+
     }
 
 }

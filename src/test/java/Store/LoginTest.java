@@ -26,21 +26,12 @@ public class LoginTest extends BasicOperations {
 
     @BeforeMethod
     public void openChromeFrontend() {
-        System.setProperty("webdriver.chrome.driver", "WebDrivers/chromedriverv80");
-        //System.setProperty("webdriver.chrome.driver", "WebDrivers/Winchromedriverv81.exe");
-        driver = new ChromeDriver();
-        driver.get("https://demo.nopcommerce.com/");
-        driver.manage().window().maximize();
-    }
 
-    @BeforeMethod
-    public void openRegPage() {
+        BasicOperations.OpenChromeFrontend();
 
         LandingPage LandingPage = new LandingPage();
         LandingPage.regIcon.click();
-
     }
-
 
     @Test
     public void loginIncorrectDetails(){
@@ -74,9 +65,10 @@ public class LoginTest extends BasicOperations {
 
     }
 
-    @AfterTest
+    @AfterMethod
     public void Close() {
 
+        BasicOperations.takeScreenshot();
         BasicOperations.Close();
 
     }

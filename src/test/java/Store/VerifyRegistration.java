@@ -26,15 +26,8 @@ public class VerifyRegistration extends BasicOperations {
 
     @BeforeMethod
     public void OpenChromeFrontend() {
-        System.setProperty("webdriver.chrome.driver", "WebDrivers/chromedriverv80");
-        //System.setProperty("webdriver.chrome.driver", "WebDrivers/Winchromedriverv81.exe");
-        driver = new ChromeDriver();
-        driver.get("https://demo.nopcommerce.com/");
-        driver.manage().window().maximize();
-    }
 
-    @BeforeMethod
-    public void openRegPage() {
+        BasicOperations.OpenChromeFrontend();
 
         LandingPage LandingPage = new LandingPage();
         LandingPage.regIcon.click();
@@ -82,6 +75,7 @@ public class VerifyRegistration extends BasicOperations {
     @AfterMethod
     public void Close() {
 
+        BasicOperations.takeScreenshot();
         BasicOperations.Close();
 
     }
