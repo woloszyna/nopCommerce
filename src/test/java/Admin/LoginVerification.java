@@ -29,12 +29,36 @@ public class LoginVerification extends BasicOperations {
     }
 
     @Test
-    public void fieldValidation() {
+    public void uiValidationEmail() {
 
         LoginPage LoginPage = new LoginPage();
-
+        Assert.assertEquals(LoginPage.loginFieldColor, "rgba(255, 255, 255, 1)");
+        Assert.assertEquals(LoginPage.loginFieldWidth,"360px");
+        Assert.assertEquals(LoginPage.loginFieldHeight,"40px");
+        Assert.assertEquals(LoginPage.loginFieldFont,"14px");
         Assert.assertEquals(LoginPage.emailType,"email");
+
+    }
+
+    @Test
+    public void uiValidationPassword() {
+
+        LoginPage LoginPage = new LoginPage();
+        Assert.assertEquals(LoginPage.passwordFieldColor, "rgba(255, 255, 255, 1)");
+        Assert.assertEquals(LoginPage.passwordFieldWidth,"360px");
+        Assert.assertEquals(LoginPage.passwordFieldHeight,"40px");
+        Assert.assertEquals(LoginPage.passwordFieldFont,"14px");
         Assert.assertEquals(LoginPage.passwordType,"password");
+    }
+
+    @Test
+    public void uiValidationLoginButton() {
+
+        LoginPage LoginPage = new LoginPage();
+        Assert.assertEquals(LoginPage.loginBtnColor,"rgba(74, 178, 241, 1)");
+        Assert.assertEquals(LoginPage.loginBtnWidth,"140px");
+        Assert.assertEquals(LoginPage.loginBtnHeight,"37px");
+        Assert.assertEquals(LoginPage.loginBtnFont,"15px");
 
     }
 
